@@ -6,6 +6,8 @@ export type State = {
   rl: Interface;
   registry: Record<string, CLICommand>;
   mapInfo: ShallowLocations;
+  inputCommand: string;
+  inputArg: string;
 };
 
 export type CLICommand = {
@@ -26,5 +28,7 @@ export const initState = async (): Promise<State> => {
     rl: rl,
     registry: commands,
     mapInfo: mapInfo,
+    inputCommand: "",
+    inputArg: "",
   };
 };

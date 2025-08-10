@@ -15,21 +15,21 @@ export const startREPL = async (state: State) => {
   rl.prompt();
   rl.on("line", async (input) => {
     const cleanedInput = cleanInput(input);
-    const inputCommand = cleanedInput[0];
-    const inputArg = cleanedInput[1];
+    state.inputCommand = cleanedInput[0];
+    state.inputArg = cleanedInput[1];
 
-    if (!inputCommand) {
+    if (!state.inputCommand) {
       rl.prompt();
       return;
     }
 
-    const command = commands[inputCommand];
+    const command = commands[state.inputCommand];
 
     if (!command) {
       console.log("Unknown command");
     } else {
       try {
-        await command.callback(state, inputArg);
+        await command.callback(state);
       } catch (err) {
         console.error("An error occurred while executing the command:", err);
       }
