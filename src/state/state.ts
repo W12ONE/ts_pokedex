@@ -1,5 +1,5 @@
 import { Interface, createInterface } from "readline";
-import { ShallowLocations, PokeAPI, LocationPokemon } from "../api/pokeapi.js";
+import { ShallowLocations, PokeAPI, PokemonInfo } from "../api/pokeapi.js";
 import { getCommands } from "../repl/repl.js";
 
 export type State = {
@@ -8,6 +8,7 @@ export type State = {
   mapInfo: ShallowLocations;
   inputCommand: string;
   inputArg: string;
+  pokedex: Record<string, PokemonInfo>;
 };
 
 export type CLICommand = {
@@ -30,5 +31,6 @@ export const initState = async (): Promise<State> => {
     mapInfo: mapInfo,
     inputCommand: "",
     inputArg: "",
+    pokedex: {},
   };
 };

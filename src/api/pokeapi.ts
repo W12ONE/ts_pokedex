@@ -60,7 +60,17 @@ export const PokeAPI = {
         return res.json();
       })
       .then((json) => {
-        return json as PokemonInfo;
+        return {
+          base_experience: json.base_experience,
+          name: json.name,
+          height: json.height,
+          weight: json.weight,
+          stats: json.stats.map((s: any) => ({
+            name: s.stat.name,
+            base_stat: s.base_stat,
+          })),
+          types: json.types.map((t: any) => ({ name: t.type.name })),
+        } as PokemonInfo;
       });
 
     _cache.add(url, promise);
@@ -99,15 +109,11 @@ export type PokemonInfo = {
   height: number;
   name: string;
   stats: {
+    name: string;
     base_stat: number;
-    stat: {
-      name: string;
-    };
   }[];
   types: {
-    type: {
-      name: string;
-    };
+    name: string;
   }[];
   weight: number;
 };

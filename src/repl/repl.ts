@@ -6,6 +6,7 @@ import { CLICommand, State } from "../state/state.js";
 import { commandMapb } from "../commands/command_mapb.js";
 import { commandExplore } from "../commands/command_explore.js";
 import { commandCatch } from "../commands/command_catch.js";
+import { commandInspect } from "../commands/command_instect.js";
 
 export const startREPL = async (state: State) => {
   const rl = state.rl;
@@ -35,6 +36,7 @@ export const startREPL = async (state: State) => {
       }
     }
     rl.prompt();
+    return;
   });
 };
 
@@ -74,6 +76,11 @@ export const getCommands = (): Record<string, CLICommand> => {
       name: "catch",
       description: "Catch a Pokemon",
       callback: commandCatch,
+    },
+    inspect: {
+      name: "inspect",
+      description: "Inspect a caught pokemon",
+      callback: commandInspect,
     },
   };
 };
