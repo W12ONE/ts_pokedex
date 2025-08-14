@@ -3,17 +3,22 @@ import { State } from "../state/state.js";
 
 export const commandCatch = async (state: State): Promise<void> => {
   console.log(`Throwing a Pokeball at ${state.inputArg}...`);
-  const pokemonInfo = await PokeAPI.fetchPokemonInfo(state.inputArg);
 
-  const caught = tryCatch(pokemonInfo);
+  try {
+    const pokemonInfo = await PokeAPI.fetchPokemonInfo(state.inputArg);
 
-  if (caught) {
-    state.pokedex[pokemonInfo.name] = pokemonInfo;
+    const caught = tryCatch(pokemonInfo);
+
+    if (caught) {
+      state.pokedex[pokemonInfo.name] = pokemonInfo;
+    }
+
+    caught
+      ? console.log(`You caught ${pokemonInfo.name}!`)
+      : console.log(`The ${pokemonInfo.name} broke free!`);
+  } catch (error) {
+    console.log("Unknown Pokemon");
   }
-
-  caught
-    ? console.log(`You caught ${pokemonInfo.name}!`)
-    : console.log(`The ${pokemonInfo.name} broke free!`);
 };
 
 function tryCatch(pokemonInfo: PokemonInfo): boolean {

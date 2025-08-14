@@ -7,6 +7,7 @@ import { commandMapb } from "../commands/command_mapb.js";
 import { commandExplore } from "../commands/command_explore.js";
 import { commandCatch } from "../commands/command_catch.js";
 import { commandInspect } from "../commands/command_instect.js";
+import { commandPokedex } from "../commands/command_pokedex.js";
 
 export const startREPL = async (state: State) => {
   const rl = state.rl;
@@ -81,6 +82,11 @@ export const getCommands = (): Record<string, CLICommand> => {
       name: "inspect",
       description: "Inspect a caught pokemon",
       callback: commandInspect,
+    },
+    pokedex: {
+      name: "pokedex",
+      description: "Display the Pokedex. It contains your caught Pokemon",
+      callback: commandPokedex,
     },
   };
 };
