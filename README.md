@@ -53,7 +53,7 @@ src/
 
 ## Error Handling
 
-- I should have handled everything but if you encounter any throws, I must have forgotten them. Maybe I find them at some point, maybe I don't. Not sure how much I'll use it now that it's completed.
+I should have handled everything but if you encounter any throws, I must have forgotten them. Maybe I find them at some point, maybe I don't. Not sure how much I'll use it now that it's completed.
 
 ## Requirements
 
